@@ -1,0 +1,13 @@
+# Large binary outputs (images, model weights, datasets)
+outputs/case_study_data/
+outputs/camo_class/
+outputs/e2e_real/
+outputs/e2e_test/
+outputs/pet_convergence/
+outputs/camo_convergence/*.png
+outputs/camo_class_result/*.pt
+
+# Keep JSON results
+!outputs/camo_convergence/results.json
+!outputs/case_study_results/summary.json
+!outputs/camo_class_result/history.json
