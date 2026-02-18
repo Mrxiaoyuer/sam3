@@ -7,7 +7,7 @@ name = "sam3"
 dynamic = ["version"]
 description = "SAM3 (Segment Anything Model 3) implementation"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [
     {name = "Meta AI Research"}
@@ -25,6 +25,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
+    "setuptools<70",
     "timm>=1.0.17",
     "numpy>=1.26,<2",
     "tqdm",
@@ -33,6 +34,20 @@ dependencies = [
     "iopath>=0.1.10",
     "typing_extensions",
     "huggingface_hub",
+    "einops",
+    "torchvision",
+    "scipy",
+    "Pillow",
+    "opencv-python",
+    "decord",
+    "psutil",
+    "hydra-core",
+    "omegaconf",
+    "matplotlib",
+    "scikit-image",
+    "scikit-learn",
+    "submitit",
+    "torchmetrics",
 ]
 
 [project.optional-dependencies]
