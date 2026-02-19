@@ -565,6 +565,7 @@ def build_sam3_image_model(
     load_from_HF=True,
     enable_segmentation=True,
     enable_inst_interactivity=False,
+    freeze_vision_backbone=False,
     compile=False,
 ):
     """
@@ -577,6 +578,7 @@ def build_sam3_image_model(
         checkpoint_path: Optional path to model checkpoint
         enable_segmentation: Whether to enable segmentation head
         enable_inst_interactivity: Whether to enable instance interactivity (SAM 1 task)
+        freeze_vision_backbone: Whether to freeze parameters under model.backbone.vision_backbone
         compile_mode: To enable compilation, set to "default"
 
     Returns:
@@ -634,6 +636,10 @@ def build_sam3_image_model(
     # Load checkpoint if provided
     if checkpoint_path is not None:
         _load_checkpoint(model, checkpoint_path)
+
+    if freeze_vision_backbone:
+        for p in model.backbone.vision_backbone.parameters():
+            p.requires_grad = False
 
     # Setup device and mode
     model = _setup_device_and_mode(model, device, eval_mode)

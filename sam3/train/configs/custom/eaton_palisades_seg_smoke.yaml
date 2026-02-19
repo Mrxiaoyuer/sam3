@@ -1,0 +1,46 @@
+# @package _global_
+defaults:
+  - /configs/custom/eaton_palisades_seg_ft
+  - _self_
+
+paths:
+  experiment_log_dir: sam3_logs/eaton_palisades_seg_smoke
+
+scratch:
+  num_train_workers: 0
+  num_val_workers: 0
+  max_data_epochs: 1
+  train_batch_size: 1
+  val_batch_size: 1
+
+trainer:
+  mode: train_only
+  max_epochs: 1
+  accelerator: cuda
+  skip_saving_ckpts: true
+  distributed:
+    backend: nccl
+    find_unused_parameters: false
+    static_graph: true
+
+  data:
+    train:
+      dataset:
+        limit_ids: 1
+      num_workers: 0
+      pin_memory: False
+    val: null
+
+  model:
+    load_from_HF: false
+    checkpoint_path: ${paths.sam3_checkpoint_path}
+
+  optim:
+    amp:
+      enabled: false
+
+launcher:
+  gpus_per_node: 1
+
+submitit:
+  use_cluster: False
